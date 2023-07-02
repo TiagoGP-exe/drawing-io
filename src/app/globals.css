@@ -62,7 +62,7 @@
     --card-foreground: 213 31% 91%;
 
     --primary: 216 86% 47%;
-    --primary-foreground: 222.2 47.4% 1.2%;
+    --primary-foreground: 213 31% 91%;
 
     --secondary: 222.2 47.4% 11.2%;
     --secondary-foreground: 210 40% 98%;
@@ -76,11 +76,8 @@
   }
 }
 
-@layer utilities {
-  .h-screen {
-    height: 100vh;
-    height: 100dvh;
-  }
+.text-balance {
+  text-wrap: balance;
 }
 
 @layer base {
