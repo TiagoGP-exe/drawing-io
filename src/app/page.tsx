@@ -39,12 +39,12 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 ">
       <Header />
-      <main className="flex items-center max-w-screen-xl w-full h-[85vh] border-x-2 px-8">
-        <div className="flex flex-col items-start  ">
-          <p className="text-5xl font-bold leading-normal text-balance w-full">
+      <main className="flex flex-col-reverse sm:flex-row items-center justify-between max-w-screen-xl w-full min-h-[85vh] border-x-2 px-8 pb-8 pt-24">
+        <div className="flex flex-col items-center  sm:items-start">
+          <p className=" text-center sm:text-left text-5xl font-bold sm:leading-normal w-full">
             Welcome to Drawing-io
           </p>
-          <p className="text-2xl opacity-60 leading-tight">
+          <p className="text-xl text-center mt-2 sm:text-left max-w-[70%] sm:text-2xl opacity-60 leading-tight">
             A collaborative drawing app for the web
           </p>
           <Link
