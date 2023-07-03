@@ -35,6 +35,13 @@ export const useDraw = (
     prevPoint.current = null;
   };
 
+  const clear = () => {
+    const ctx = canvasRef.current?.getContext("2d");
+    if (!ctx) return;
+
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  };
+
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (!mouseDown) return;
@@ -81,5 +88,6 @@ export const useDraw = (
     setActualColor,
     actualSize,
     setActualSize,
+    clear,
   };
 };

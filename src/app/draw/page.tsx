@@ -1,5 +1,7 @@
 "use client";
 
+import { Canvas } from "@/components/canvas";
+import { Button } from "@/components/ui/button";
 import {
   ColorsPointer,
   SizePointer,
@@ -22,8 +24,13 @@ const Page: FC<PageProps> = ({}) => {
     actualSize,
     setActualColor,
     setActualSize,
+    clear,
   } = useDraw(drawLine);
   const { height, width } = useWindowSize();
+
+  console.log(width);
+
+  const isMobile = width < 640;
 
   function drawLine({ prevPoint, currentPoint, ctx, color, size }: Draw) {
     const { x: currX, y: currY } = currentPoint;
@@ -48,49 +55,18 @@ const Page: FC<PageProps> = ({}) => {
     ctx.fill();
   }
 
-  if (height === 0 || width === 0) return null;
-
   return (
     <div className="min-h-screen min-w-full flex items-center justify-center ">
       <div className="flex max-w-screen-xl h-[80vh] w-full bg-foreground-soft rounded-md sm:flex-row flex-col p-1">
-        <canvas
-          ref={canvasRef}
+        <Canvas
+          canvasRef={canvasRef}
           onMouseDown={onMouseDown}
-          className="bg-white rounded-md border"
-          width={width * 0.8 - 100}
-          height={height * 0.8}
+          actualColor={actualColor}
+          actualSize={actualSize}
+          setActualColor={setActualColor}
+          setActualSize={setActualSize}
+          clear={clear}
         />
-        <div className="flex flex-col items-center w-full pt-2">
-          <h1 className="font-heading text-xl mb-2">size</h1>
-          <div className="flex flex-col gap-1">
-            {Sizes.map((size) => (
-              <SizePointer
-                color={actualColor}
-                size={size}
-                key={size}
-                isActive={size === actualSize}
-                setSize={(size: SizesPointer) => {
-                  setActualSize(size);
-                }}
-              />
-            ))}
-          </div>
-
-          <h1 className="font-heading text-xl mb-2 mt-4">color</h1>
-          <div className="flex flex-col gap-1">
-            {Object.keys(colorsPointer).map((color) => (
-              <SizePointer
-                color={color as ColorsPointer}
-                size={actualSize}
-                key={color}
-                isActive={color === actualColor}
-                setSize={() => {
-                  setActualColor(color as ColorsPointer);
-                }}
-              />
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );
