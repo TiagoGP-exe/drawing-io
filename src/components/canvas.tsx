@@ -9,6 +9,7 @@ import {
   colorsPointer,
 } from "./ui/size-pointer";
 import { Button } from "./ui/button";
+import { EraserIcon } from "lucide-react";
 
 const Sizes: SizesPointer[] = ["sm", "md", "lg"];
 
@@ -42,8 +43,6 @@ export const Canvas: FC<CanvasProps> = ({
     const ctx = canvas.getContext("2d");
 
     if (!!canvas && !!ctx) {
-      console.log(canvas);
-
       const tempCanvas = document.createElement("canvas");
       const tempCtx = tempCanvas.getContext("2d");
 
@@ -92,7 +91,7 @@ export const Canvas: FC<CanvasProps> = ({
         </div>
 
         <h1 className="font-heading text-xl mb-2 mt-4">color</h1>
-        <div className="flex sm:flex-col gap-1">
+        <div className="flex sm:flex-col gap-1 items-center">
           {Object.keys(colorsPointer).map((color) => (
             <SizePointer
               color={color as ColorsPointer}
@@ -104,6 +103,17 @@ export const Canvas: FC<CanvasProps> = ({
               }}
             />
           ))}
+
+          <Button
+            onClick={() => {
+              setActualColor("white");
+            }}
+            className="mt-4"
+            variant="outline"
+            size="sm"
+          >
+            <EraserIcon size={16} />
+          </Button>
         </div>
 
         <Button onClick={clear} className="mt-4" variant="ghost" size="sm">

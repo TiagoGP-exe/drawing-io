@@ -11,6 +11,7 @@ export const colorsPointer = {
   pink: "bg-pink-500",
   gray: "bg-gray-500",
   orange: "bg-orange-500",
+  white: "bg-white border border-gray-500",
 };
 
 const sizePointerContainer = cva(

@@ -1,18 +1,8 @@
 "use client";
 
 import { Canvas } from "@/components/canvas";
-import { Button } from "@/components/ui/button";
-import {
-  ColorsPointer,
-  SizePointer,
-  SizesPointer,
-  colorsPointer,
-} from "@/components/ui/size-pointer";
 import { Draw, useDraw } from "@/hooks/use-draw";
-import { useWindowSize } from "@/hooks/use-window-size";
 import { FC } from "react";
-
-const Sizes: SizesPointer[] = ["sm", "md", "lg"];
 
 interface PageProps {}
 
@@ -26,11 +16,6 @@ const Page: FC<PageProps> = ({}) => {
     setActualSize,
     clear,
   } = useDraw(drawLine);
-  const { height, width } = useWindowSize();
-
-  console.log(width);
-
-  const isMobile = width < 640;
 
   function drawLine({ prevPoint, currentPoint, ctx, color, size }: Draw) {
     const { x: currX, y: currY } = currentPoint;
