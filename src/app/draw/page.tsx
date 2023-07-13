@@ -6,7 +6,7 @@ import { drawLine } from "@/lib/utils";
 import { FC, useEffect } from "react";
 
 import { io } from "socket.io-client";
-const socket = io("http://localhost:3001");
+const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL as string);
 
 interface PageProps {}
 

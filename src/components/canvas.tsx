@@ -10,9 +10,6 @@ import {
 } from "./ui/size-pointer";
 import { Button } from "./ui/button";
 import { EraserIcon } from "lucide-react";
-import { io } from "socket.io-client";
-
-const socket = io("http://localhost:3001");
 
 const Sizes: SizesPointer[] = ["sm", "md", "lg"];
 
