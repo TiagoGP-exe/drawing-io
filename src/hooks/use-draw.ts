@@ -1,3 +1,5 @@
+"use client";
+
 import { ColorsPointer, SizesPointer } from "@/components/ui/size-pointer";
 import { useEffect, useRef, useState } from "react";
 
@@ -9,7 +11,7 @@ export type Draw = {
   size: number;
 };
 
-const sizeValues: Record<SizesPointer, number> = {
+export const sizeValues: Record<SizesPointer, number> = {
   sm: 2,
   md: 4,
   lg: 6,
@@ -58,6 +60,7 @@ export const useDraw = (
         color: actualColor,
         size: sizeValues[actualSize],
       });
+
       prevPoint.current = currentPoint;
     };
 
@@ -77,6 +80,7 @@ export const useDraw = (
 
     return () => {
       canvasRef.current?.removeEventListener("mousemove", handler);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       canvasRef.current?.removeEventListener("mouseup", onMouseUpHandler);
     };
   }, [actualColor, actualSize, mouseDown, onDraw]);

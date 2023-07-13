@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import "./globals.css";
+import "@/styles/globals.css";
 import { Outfit as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";

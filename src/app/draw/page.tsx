@@ -1,8 +1,12 @@
 "use client";
 
 import { Canvas } from "@/components/canvas";
-import { Draw, useDraw } from "@/hooks/use-draw";
-import { FC } from "react";
+import { Draw, sizeValues, useDraw } from "@/hooks/use-draw";
+import { drawLine } from "@/lib/utils";
+import { FC, useEffect } from "react";
+
+import { io } from "socket.io-client";
+const socket = io("http://localhost:3001");
 
 interface PageProps {}
 
@@ -15,29 +19,56 @@ const Page: FC<PageProps> = ({}) => {
     setActualColor,
     setActualSize,
     clear,
-  } = useDraw(drawLine);
+  } = useDraw(createLine);
 
-  function drawLine({ prevPoint, currentPoint, ctx, color, size }: Draw) {
-    const { x: currX, y: currY } = currentPoint;
+  useEffect(() => {
+    const ctx = canvasRef.current?.getContext("2d");
 
-    const lineColor = color;
-    const lineWidth = size;
+    socket.emit("client-ready");
 
-    let startPoint = prevPoint ?? currentPoint;
+    socket.on("get-canvas-state", () => {
+      if (!canvasRef.current?.toDataURL()) return;
+      socket.emit("canvas-state", canvasRef.current.toDataURL());
+    });
 
-    ctx.beginPath();
-    ctx.lineWidth = lineWidth;
-    ctx.lineCap = "round";
-    ctx.strokeStyle = lineColor;
-    ctx.moveTo(startPoint.x, startPoint.y);
-    ctx.lineTo(currX, currY);
-    ctx.stroke();
+    socket.on("canvas-state-from-server", (state: string) => {
+      const img = new Image();
+      img.src = state;
+      img.onload = () => {
+        ctx?.drawImage(img, 0, 0);
+      };
+    });
 
-    ctx.fillStyle = lineColor;
-    ctx.beginPath();
-    ctx.arc(currX, currY, lineWidth / 2, 0, Math.PI * 2);
-    // ctx.arc(startPoint.x, startPoint.y, 2, 0, 2 * Math.PI);
-    ctx.fill();
+    socket.on("draw-line", ({ prevPoint, currentPoint, color }: Draw) => {
+      if (!ctx) return console.log("no ctx here");
+      drawLine({
+        prevPoint,
+        currentPoint,
+        ctx,
+        color,
+        size: sizeValues[actualSize],
+      });
+    });
+
+    socket.on("clear", clear);
+
+    return () => {
+      socket.off("draw-line");
+      socket.off("get-canvas-state");
+      socket.off("canvas-state-from-server");
+      socket.off("clear");
+    };
+  }, [actualSize, canvasRef, clear]);
+
+  function createLine({ prevPoint, currentPoint, ctx }: Draw) {
+    socket.emit("draw-line", { prevPoint, currentPoint, color: actualColor });
+    drawLine({
+      prevPoint,
+      currentPoint,
+      ctx,
+      color: actualColor,
+      size: sizeValues[actualSize],
+    });
   }
 
   return (

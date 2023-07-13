@@ -1,7 +1,7 @@
 "use client";
 
 import { useWindowSize } from "@/hooks/use-window-size";
-import { FC, use, useEffect } from "react";
+import { FC, useEffect } from "react";
 import {
   ColorsPointer,
   SizePointer,
@@ -10,6 +10,9 @@ import {
 } from "./ui/size-pointer";
 import { Button } from "./ui/button";
 import { EraserIcon } from "lucide-react";
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:3001");
 
 const Sizes: SizesPointer[] = ["sm", "md", "lg"];
 
