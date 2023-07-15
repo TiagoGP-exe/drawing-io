@@ -71,6 +71,11 @@ const Page: FC<PageProps> = ({}) => {
     });
   }
 
+  const customClear = () => {
+    socket.emit("clear");
+    clear();
+  };
+
   return (
     <div className="min-h-screen min-w-full flex items-center justify-center ">
       <div className="flex justify-center items-center max-w-screen-xl h-[80vh] w-full bg-foreground-soft rounded-md sm:flex-row flex-col ">
@@ -81,7 +86,7 @@ const Page: FC<PageProps> = ({}) => {
           actualSize={actualSize}
           setActualColor={setActualColor}
           setActualSize={setActualSize}
-          clear={clear}
+          clear={customClear}
         />
       </div>
     </div>
