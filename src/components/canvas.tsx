@@ -70,11 +70,11 @@ export const Canvas: FC<CanvasProps> = ({
       <canvas
         ref={canvasRef}
         onMouseDown={onMouseDown}
-        className="bg-white rounded-md border"
+        className="bg-white rounded-md md:rounded-r-none border"
         width={750}
         height={750}
       />
-      <div className="flex flex-col items-center w-full p-4 sm:pt-2 bg-foreground-soft rounded-md">
+      <div className="flex flex-col items-center p-4 sm:pt-2 bg-foreground-soft rounded md:rounded-l-none md:h-full">
         <h1 className="font-heading text-xl mb-2">size</h1>
         <div className="flex sm:flex-col gap-1">
           {Sizes.map((size) => (

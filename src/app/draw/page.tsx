@@ -73,7 +73,7 @@ const Page: FC<PageProps> = ({}) => {
 
   return (
     <div className="min-h-screen min-w-full flex items-center justify-center ">
-      <div className="flex max-w-screen-xl h-[80vh] w-full bg-foreground-soft rounded-md sm:flex-row flex-col p-1">
+      <div className="flex justify-center items-center max-w-screen-xl h-[80vh] w-full bg-foreground-soft rounded-md sm:flex-row flex-col ">
         <Canvas
           canvasRef={canvasRef}
           onMouseDown={onMouseDown}

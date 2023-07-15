@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 ">
       <Header />
-      <main className="flex flex-col-reverse sm:flex-row items-center justify-between max-w-screen-xl w-full min-h-[85vh] border-x-2 px-8 pb-8 pt-24">
+      <main className="flex flex-col-reverse sm:flex-row items-center justify-between xl:max-w-screen-2xl max-w-screen-xl w-full min-h-[85vh] border-x-2 px-8 pb-8 pt-24">
         <div className="flex flex-col items-center  sm:items-start">
           <p className=" text-center sm:text-left text-5xl font-bold sm:leading-normal w-full">
             Welcome to Drawing-io
@@ -60,7 +60,7 @@ export default function Home() {
         <Lottie animationData={isDark ? drawDark : draw} loop={true} />
       </main>
       <div className="flex w-full justify-center  border-t-2 flex-1 ">
-        <div className="flex w-full max-w-screen-xl flex-wrap items-center justify-center gap-4 border-x-2 p-8 md:justify-between flex-1 ">
+        <div className="flex w-full max-w-screen-xl xl:max-w-screen-2xl flex-wrap items-center justify-center gap-4 border-x-2 p-8 md:justify-between flex-1 ">
           <div className="flex flex-wrap items-center justify-center gap-4 ">
             <Link href="https://github.com/tiagogp-exe">
               <Image

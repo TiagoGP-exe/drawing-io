@@ -5,7 +5,7 @@ import { Button, buttonVariants } from "./ui/button";
 
 export const Header = () => (
   <header className="flex justify-center fixed top-0 h-20 inset-x-0 border-b-2 z-10">
-    <main className="flex max-w-screen-xl w-full px-4 justify-between items-center lg:px-8 border-x-2 bg-background">
+    <main className="flex max-w-screen-xl xl:max-w-screen-2xl w-full px-4 justify-between items-center lg:px-8 border-x-2 bg-background">
       <div className="flex justify-center items-center gap-2">
         <Icons.logo />
         <p className="font-heading text-xl">Drawing-io</p>
